@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router';
 
 import {
   AUTH_USER,
+  UNAUTH_USER,
   AUTH_ERROR
 } from './types';
 
@@ -21,6 +22,15 @@ export function signinUser({email, password}) {
       .catch(() => {
         dispatch(authError('Bad Login Info'))
       })
+  }
+}
+
+export function signoutUser() {
+
+  localStorage.removeItem('token');
+
+  return {
+    type: UNAUTH_USER
   }
 }
 
